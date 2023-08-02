@@ -1,0 +1,2 @@
+- `npm install` -> `npm run dev`
+- localhost:5173로 접속!
