@@ -7,12 +7,25 @@ import Profile from "./Profile";
 
 function App() {
   const [tab, setTab] = React.useState<"Profile" | "MyGits" | "Shares" | "Invitations" | "Job/Project List">("Profile");
+  const [isWideScreen, setIsWideScreen] = React.useState(window.innerWidth >= 1500);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth >= 1500);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  console.log(isWideScreen, window.innerWidth * 0.1);
   return (
     <Stbody>
       <Header />
       <Navigation tab={tab} setTab={setTab} />
       <StMainBody>
-        <StTabTitle>{tab}</StTabTitle>
+        <StTabTitle isWideScreen={isWideScreen}>{tab}</StTabTitle>
         {tab === "Profile" && <Profile />}
       </StMainBody>
     </Stbody>
@@ -29,9 +42,12 @@ const Stbody = styled.div`
 `;
 const StMainBody = styled.div`
   padding: 90px 200px;
+  display: flex;
+  flex-direction: column;
 `;
-const StTabTitle = styled.div`
-  color: #000;
+const StTabTitle = styled.div<{ isWideScreen: boolean }>`
+  margin-left: ${({ isWideScreen }) => (isWideScreen ? window.innerWidth * 0.08 + "px" : "0")};
+  text-align: left;
   line-height: 25px;
   font-family: Inter;
   font-size: 30px;

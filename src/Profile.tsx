@@ -1,5 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
+import ProfileCard from "./ProfileCard";
+import BarChart from "./BarChart";
+import ProjectList from "./ProjectList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
   return (
@@ -9,32 +14,30 @@ const Profile = () => {
       <svg xmlns="http://www.w3.org/2000/svg" width="940" height="2" viewBox="0 0 940 2" fill="none">
         <path d="M0 1H940" stroke="black" />
       </svg>
-      <StProfile.CardContainer>
-        <StProfile.ProfileCard size={"large"}>
-          <StProfile.CardContent>
-            <StProfile.SmallTitle>Education</StProfile.SmallTitle>
-            <StProfile.CardText>Computer Engineer, Bachelor</StProfile.CardText>
-          </StProfile.CardContent>
-        </StProfile.ProfileCard>
-        <StProfile.ProfileCard size={"large"}>
-          <StProfile.CardContent>
-            <StProfile.SmallTitle>Contact</StProfile.SmallTitle>
-            <StProfile.CardText>+82.10.000.0000</StProfile.CardText>
-          </StProfile.CardContent>
-        </StProfile.ProfileCard>
-        <StProfile.ProfileCard size={"small"}>
-          <StProfile.CardContent>
-            <StProfile.SmallTitle>Location</StProfile.SmallTitle>
-            <StProfile.CardText>Seoul, S.Korea</StProfile.CardText>
-          </StProfile.CardContent>
-        </StProfile.ProfileCard>
-        <StProfile.ProfileCard size={"small"}>
-          <StProfile.CardContent>
-            <StProfile.SmallTitle>Language</StProfile.SmallTitle>
-            <StProfile.CardText>Korean, English</StProfile.CardText>
-          </StProfile.CardContent>
-        </StProfile.ProfileCard>
-      </StProfile.CardContainer>
+      <ProfileCard />
+      <StProfile.SubjectDivide>
+        <StProfile.MiddleTitle>활동내역</StProfile.MiddleTitle>
+        <svg xmlns="http://www.w3.org/2000/svg" width="890" height="2" viewBox="0 0 890 2" fill="none">
+          <path d="M0 1H890" stroke="black" />
+        </svg>
+        <BarChart />
+      </StProfile.SubjectDivide>
+      <StProfile.SubjectDivide>
+        <StProfile.TitleContainer>
+          <StProfile.MiddleTitle>프로젝트 이력</StProfile.MiddleTitle>
+          <StProfile.ProjectSum>
+            <StProfile.ProjectSummaryElement>Totla projects: 24</StProfile.ProjectSummaryElement>
+            <StProfile.ProjectSummaryElement>Total period: 5 years, 0 months</StProfile.ProjectSummaryElement>
+          </StProfile.ProjectSum>
+        </StProfile.TitleContainer>
+        <svg xmlns="http://www.w3.org/2000/svg" width="890" height="2" viewBox="0 0 890 2" fill="none">
+          <path d="M0 1H890" stroke="black" />
+        </svg>
+        <ProjectList />
+      </StProfile.SubjectDivide>
+      <StProfile.ViewMore>
+        View More Projects <FontAwesomeIcon icon={faChevronDown} style={{ width: "14px" }} />
+      </StProfile.ViewMore>
     </StProfile.Body>
   );
 };
@@ -46,13 +49,13 @@ const StProfile = {
     border-radius: 4px;
     border: 1px solid #ccc;
     background: #fff;
-    width: 1020px;
-    height: 2280px;
-    padding: 83px 50px 78px 50px;
+    width: 940px;
+    height: fit-content;
+    padding: 83px 30px 78px 50px;
+    margin: auto;
   `,
   NameArea: styled.div`
     padding-left: 25px;
-    color: #000;
     font-family: Noto Sans KR;
     font-size: 30px;
     font-style: normal;
@@ -61,43 +64,57 @@ const StProfile = {
   `,
   EmailArea: styled.div`
     padding: 20px 0 20px 27px;
-    color: #000;
     font-family: Noto Serif KR;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   `,
-  CardContainer: styled.div`
-    padding-left: 25px;
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
+  SubjectDivide: styled.div`
+    padding: 120px 25px 0px 25px;
   `,
-  ProfileCard: styled.div<{ size: "small" | "large" }>`
-    margin-top: 20px;
-    width: ${({ size }) => (size === "small" ? "170px" : "265px")};
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    background: #fff;
-    height: 70px;
-  `,
-  CardContent: styled.div`
-    padding: 10px 16px 18px 16px;
-  `,
-  SmallTitle: styled.span`
-    color: #000;
+  MiddleTitle: styled.p`
     font-family: Noto Sans KR;
-    font-size: 11px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
+    margin: 0;
   `,
-  CardText: styled.p`
-    color: #000;
-    font-family: Noto Serif KR;
-    font-size: 15px;
+  ProjectSummaryElement: styled.div`
+    color: #999;
+    font-family: Noto Sans KR;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    margin: 0;
+  `,
+  TitleContainer: styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  `,
+  ProjectSum: styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  `,
+  ViewMore: styled.div`
+    border-radius: 4px;
+    background: #eee;
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 54px;
+    margin: auto;
+    margin-top: 82px;
+    color: #000;
+    text-align: center;
+    font-family: Noto Sans KR;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    gap: 10px;
+    cursor: pointer;
   `,
 };

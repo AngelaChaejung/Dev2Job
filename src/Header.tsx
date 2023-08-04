@@ -45,7 +45,6 @@ const StItemArea = styled.div`
 `;
 const StRole = styled.div`
   padding-left: 19px;
-  color: #000;
   font-family: Inter;
   font-size: 16px;
   font-weight: 400;
@@ -53,7 +52,6 @@ const StRole = styled.div`
 `;
 const StLoginInfo = styled.div`
   display: flex;
-  color: #000;
   font-family: Inter;
   font-size: 16px;
   font-weight: 400;
