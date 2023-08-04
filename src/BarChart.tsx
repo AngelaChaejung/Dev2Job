@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "styled-components";
 import suqre from "../src/assets/square.svg";
 import Jas from "../src/assets/JS.svg";
